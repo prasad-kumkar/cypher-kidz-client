@@ -91,26 +91,28 @@ export const Gallery = ({ near, signedIn, contractAccount, account, localKeys, l
 
 	return <>
 		{signedIn && <div className="filters">
-			<button onClick={() => setFilter(1)} style={{ background: filter === 1 ? '#FFB259' : ''}}>Market</button>
-			<button onClick={() => setFilter(2)} style={{ background: filter === 2 ? '#FFB259' : ''}}>My Tokens</button>
+			<button onClick={() => setFilter(1)} style={{ background: filter === 1 ? 'rgb(255, 252, 106)' : ''}}>Market</button>
+			<button onClick={() => setFilter(2)} style={{ background: filter === 2 ? 'rgb(255, 252, 106)' : ''}}>My Tokens</button>
 		</div>}
 		{
-			(filter === 1 ? market : mine).map(({ metadata, owner_id, price, token_id }) => <div key={token_id} className="item">
-				<img src={metadata} />
-				{(filter === 1 || price !== '0') &&<div className="line"></div>}
-				{filter === 1 && <p>Owned by {formatAccountId(owner_id)}</p>}
-				{
-					price !== '0' && <>
-						<p>Price {formatNearAmount(price, 2)}</p>
-						{
-							account && <button onClick={() => handlePurchase(token_id)}>Purchase</button>
-						}
-					</>
-				}
-				{filter === 2 && <>
-					<input placeholder="Price (N)" value={amount} onChange={(e) => setAmount(e.target.value)} />
-					<button onClick={() => handleSetPrice(token_id)}>Set Price</button>
-				</>}
+			(filter === 1 ? market : mine).map(({ metadata, owner_id, price, token_id }) =>
+				<div key={token_id} className="item">
+					<img src={metadata} />
+					{(filter === 1 || price !== '0') &&<div className="line"></div>}
+					{filter === 1 && <p>Owned by {formatAccountId(owner_id)}</p>}
+					{
+						price !== '0' && <>
+							<p>Price {formatNearAmount(price, 2)}</p>
+							{
+								account && <button onClick={() => handlePurchase(token_id)}>Purchase</button>
+							}
+						</>
+					}
+					{filter === 2 && <>
+						<input placeholder="Price (N)" value={amount} onChange={(e) => setAmount(e.target.value)} />
+						<input placeholder=""/>
+						<button onClick={() => handleSetPrice(token_id)}>Set Price</button>
+					</>}
 			</div>)
 		}
 	</>;

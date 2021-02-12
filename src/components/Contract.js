@@ -11,6 +11,7 @@ const {
 	KeyPair,
 } = nearAPI;
 
+var clickedOnStart = false;
 export const Contract = ({ near, update, localKeys = {}, account }) => {
 	if (!account && !localKeys.signedIn) return null;
 
@@ -54,15 +55,20 @@ export const Contract = ({ near, update, localKeys = {}, account }) => {
         setMetadata('')
 	};
 
-	return <>
-		<h3>Mint Something</h3>
+	const getStarted = () => {
+		clickedOnStart = true;
+	};
+
+	return <> 
 		{ 
 			!account ? <>
+				<h1>Pick a character and <br/> Attach here:</h1>
 				{
 					freebies > 0 && <>{
 						freebies < 4 ? <>
-							<p>{freebies} / 3 Free Mint</p>
-							<input placeholder="Metadata (Image URL)" value={metadata} onChange={(e) => setMetadata(e.target.value)} />
+							<p>{freebies} / 3 Free Characters</p>
+							<input placeholder="Image URL" value={metadata} onChange={(e) => setMetadata(e.target.value)} />
+							<input placeholder="Description" value={metadata} onChange={(e) => setMetadata(e.target.value)} />
 							<button onClick={() => handleMint()}>Mint</button>
 						</> :
 							<p>You are out of free mints 😭</p>
@@ -75,5 +81,5 @@ export const Contract = ({ near, update, localKeys = {}, account }) => {
 				</>
 		}
 	</>;
-};
-
+	}
+;

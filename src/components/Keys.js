@@ -123,6 +123,7 @@ export const Keys = ({ near, update, localKeys }) => {
 	};
 
 	return <>
+		
 		{ localKeys && localKeys.signedIn ?
 			<>
 				<p>Balance: {localKeys.proceeds || '0'} N</p>
@@ -135,7 +136,13 @@ export const Keys = ({ near, update, localKeys }) => {
 				<br />
 				<button onClick={() => signOut()}>Sign Out</button>
 			</> :
+			<div class="sign-in-poster">
+			<h3>SEND</h3>
+			<h1>TOKEN MEME</h1>
+			<p>Educate kids about cryptography</p>
 			<button onClick={() => getNewAccessKey()}>Sign In As Guest</button>
+		</div>	
+			
 		}
 		{/* <button onClick={() => deleteAccessKeys()}>DELETE ALL ACCESS KEY ACCOUNTS</button> */}
 	</>;

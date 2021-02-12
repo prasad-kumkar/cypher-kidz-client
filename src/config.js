@@ -1,11 +1,11 @@
-const contractName = 'dev-1612844347923-9134781';
+const contractName = 'dev-1613126738607-2384127';
 
 module.exports = function getConfig() {
 	let config = {
 		networkId: 'default',
 		nodeUrl: 'https://rpc.testnet.near.org',
-		walletUrl: 'http://localhost:1234',
-		// walletUrl: 'https://wallet.testnet.near.org',
+		// walletUrl: 'http://localhost:1234',
+		walletUrl: 'https://wallet.testnet.near.org',
 		helperUrl: 'https://helper.testnet.near.org',
 		contractName,
 	};
